@@ -16,14 +16,14 @@ ENV PYTHONFAULTHANDLER=1 \
 
 RUN pip install "poetry==$POETRY_VERSION"
 
-WORKDIR /usr/src/app
+WORKDIR /usr/src/app\nCOPY .env ./ /usr/src/app/.env
 COPY ./api/django_project/poetry.lock ./api/django_project/pyproject.toml /usr/src/app/
 
 RUN poetry config virtualenvs.create false
 RUN poetry install --no-interaction --no-ansi
 
 WORKDIR /usr/src/app
-COPY ./api/django_project ./django
+COPY .env ./ /usr/src/app/.env
 COPY ./infrastructure/celery-flower/entry.sh ./
 RUN mkdir -p /logs/
 
