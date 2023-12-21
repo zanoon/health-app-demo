@@ -1,4 +1,5 @@
 from django.conf import settings
+import os
 from django.core.exceptions import ImproperlyConfigured
 from opentelemetry import trace
 from opentelemetry._logs import set_logger_provider
@@ -59,7 +60,7 @@ class DirectWriteLoggingHandler(LoggingHandler):
 
         try:
             # load and return
-            return getattr(settings, var)
+            return os.getenv(var, default)
         except AttributeError:
             # setting is not defined
             if default is not None:
