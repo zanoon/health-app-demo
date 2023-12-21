@@ -4,27 +4,27 @@ services:
     env_file:
       - .env
     environment:
-      DATABASE_NAME: ${DATABASE_NAME}
-      DATABASE_USER: ${DATABASE_USER}
-      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
-      DATABASE_HOST: ${DATABASE_HOST}
-      DATABASE_PORT: ${DATABASE_PORT}
-      CELERY_BROKER_URL: ${CELERY_BROKER_URL}
-      CELERY_RESULT_URL: ${CELERY_RESULT_URL}
-      CHANNELS_URLS: ${CHANNELS_URLS}
-      ELASTIC_SEARCH_HOST: ${ELASTIC_SEARCH_HOST}
-      AUTH_DOMAIN: ${AUTH_DOMAIN}
-      AUTH_IDENTIFIER: ${AUTH_IDENTIFIER}
-      DD_ENV: ${DD_ENV}
-      DD_TRACE_ENABLED: ${DD_TRACE_ENABLED}
-      FLOWER_USER: ${FLOWER_USER}
-      FLOWER_PASSWORD: ${FLOWER_PASSWORD}
-      DJANGO_HOT_RELOAD: ${DJANGO_HOT_RELOAD}
-      GMAPS_API_KEY: ${GMAPS_API_KEY}
-      BUCKET_NAME: ${BUCKET_NAME}
-      BUCKET_USERNAME: ${BUCKET_USERNAME}
-      BUCKET_KEY: ${BUCKET_KEY}
-      BUCKET_SECRET: ${BUCKET_SECRET}
-      BUCKET_ENDPOINT: ${BUCKET_ENDPOINT}
-      SENDGRID_API_KEY: ${SENDGRID_API_KEY}
-      CELERY_QUEUE: ${CELERY_QUEUE}
+      DATABASE_NAME: $(shell source .env; echo $$DATABASE_NAME)
+      DATABASE_USER: $(shell source .env; echo $$DATABASE_USER)
+      DATABASE_PASSWORD: $(shell source .env; echo $$DATABASE_PASSWORD)
+      DATABASE_HOST: $(shell source .env; echo $$DATABASE_HOST)
+      DATABASE_PORT: $(shell source .env; echo $$DATABASE_PORT)
+      CELERY_BROKER_URL: $(shell source .env; echo $$CELERY_BROKER_URL)
+      CELERY_RESULT_URL: $(shell source .env; echo $$CELERY_RESULT_URL)
+      CHANNELS_URLS: $(shell source .env; echo $$CHANNELS_URLS)
+      ELASTIC_SEARCH_HOST: $(shell source .env; echo $$ELASTIC_SEARCH_HOST)
+      AUTH_DOMAIN: $(shell source .env; echo $$AUTH_DOMAIN)
+      AUTH_IDENTIFIER: $(shell source .env; echo $$AUTH_IDENTIFIER)
+      DD_ENV: $(shell source .env; echo $$DD_ENV)
+      DD_TRACE_ENABLED: $(shell source .env; echo $$DD_TRACE_ENABLED)
+      FLOWER_USER: $(shell source .env; echo $$FLOWER_USER)
+      FLOWER_PASSWORD: $(shell source .env; echo $$FLOWER_PASSWORD)
+      DJANGO_HOT_RELOAD: $(shell source .env; echo $$DJANGO_HOT_RELOAD)
+      GMAPS_API_KEY: $(shell source .env; echo $$GMAPS_API_KEY)
+      BUCKET_NAME: $(shell source .env; echo $$BUCKET_NAME)
+      BUCKET_USERNAME: $(shell source .env; echo $$BUCKET_USERNAME)
+      BUCKET_KEY: $(shell source .env; echo $$BUCKET_KEY)
+      BUCKET_SECRET: $(shell source .env; echo $$BUCKET_SECRET)
+      BUCKET_ENDPOINT: $(shell source .env; echo $$BUCKET_ENDPOINT)
+      SENDGRID_API_KEY: $(shell source .env; echo $$SENDGRID_API_KEY)
+      CELERY_QUEUE: $(shell source .env; echo $$CELERY_QUEUE)

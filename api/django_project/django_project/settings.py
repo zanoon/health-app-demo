@@ -25,11 +25,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-p9s3h@$1k6gs4uj!qyp$^9f6nttydour71(cq5=83ti(j1r*s4"
 TESTING = "test" in sys.argv
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = literal_eval(os.environ.get("DEBUG_MODE", "True"))
+DEBUG = literal_eval(os.getenv("DEBUG_MODE", "True"))
 
-ALLOWED_HOSTS = literal_eval(os.environ.get("ALLOWED_HOST", "['*']"))
+ALLOWED_HOSTS = literal_eval(os.getenv("ALLOWED_HOST", "['*']"))
 CORS_ALLOWED_ORIGINS = literal_eval(
-    os.environ.get("CORS_ALLOWED_ORIGINS", "['http://localhost:3000']")
+    os.getenv("CORS_ALLOWED_ORIGINS", "['http://localhost:3000']")
 )
 
 
@@ -95,19 +95,19 @@ ASGI_APPLICATION = "django_project.asgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.environ.get("DATABASE_NAME", "maindb"),
-        "USER": os.environ.get("DATABASE_USER", "admin_user"),
-        "PASSWORD": os.environ.get("DATABASE_PASSWORD", "password123*"),
-        "HOST": os.environ.get("DATABASE_HOST", "localhost"),
-        "PORT": os.environ.get("DATABASE_PORT", "5432"),
+        "NAME": os.getenv("DATABASE_NAME", "maindb"),
+        "USER": os.getenv("DATABASE_USER", "admin_user"),
+        "PASSWORD": os.getenv("DATABASE_PASSWORD", "password123*"),
+        "HOST": os.getenv("DATABASE_HOST", "localhost"),
+        "PORT": os.getenv("DATABASE_PORT", "5432"),
     }
 }
 
 ELASTIC_SEARCH = {
-    "host": os.environ.get("ELASTIC_SEARCH_HOST", "localhost"),
+    "host": os.getenv("ELASTIC_SEARCH_HOST", "localhost"),
     "port": 9200,
-    "user": os.environ.get("ELASTIC_SEARCH_USER", ""),
-    "password": os.environ.get("ELASTIC_SEARCH_PASSWORD", ""),
+    "user": os.getenv("ELASTIC_SEARCH_USER", ""),
+    "password": os.getenv("ELASTIC_SEARCH_PASSWORD", ""),
 }
 
 # Password validation
@@ -155,8 +155,8 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-CELERY_BROKER_URL = os.environ.get("CELERY_BROKER_URL", "redis://localhost:6379/0")
-CELERY_RESULT_BACKEND = os.environ.get(
+CELERY_BROKER_URL = os.getenv("CELERY_BROKER_URL", "redis://localhost:6379/0")
+CELERY_RESULT_BACKEND = os.getenv(
     "CELERY_RESULT_URL",
     "redis://localhost:6379/0",
 )
@@ -170,7 +170,7 @@ CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "channels_redis.core.RedisChannelLayer",
         "CONFIG": {
-            "hosts": [(os.environ.get("CHANNELS_URLS", "redis://localhost:6379/0"))],
+            "hosts": [(os.getenv("CHANNELS_URLS", "redis://localhost:6379/0"))],
         },
     },
 }
@@ -178,7 +178,7 @@ CHANNEL_LAYERS = {
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": os.environ.get("CHANNELS_URLS", "redis://localhost:6379/0"),
+        "LOCATION": os.getenv("CHANNELS_URLS", "redis://localhost:6379/0"),
     }
 }
 
@@ -193,27 +193,27 @@ REST_FRAMEWORK = {
     "PAGE_SIZE": 50,
 }
 
-GMAPS_API_KEY = os.environ.get("GMAPS_API_KEY", "")
-MAILGUN_API_KEY = os.environ.get("MAILGUN_API_KEY", "")
-MAILGUN_DOMAIN = os.environ.get("MAILGUN_DOMAIN", "")
+GMAPS_API_KEY = os.getenv("GMAPS_API_KEY", "")
+MAILGUN_API_KEY = os.getenv("MAILGUN_API_KEY", "")
+MAILGUN_DOMAIN = os.getenv("MAILGUN_DOMAIN", "")
 
-BUCKET_NAME = os.environ.get("BUCKET_NAME", "")
-BUCKET_USERNAME = os.environ.get("BUCKET_USERNAME", "")
-BUCKET_KEY = os.environ.get("BUCKET_KEY", "")
-BUCKET_SECRET = os.environ.get("BUCKET_SECRET", "")
-BUCKET_ENDPOINT = os.environ.get("BUCKET_ENDPOINT", "")
-BUCKET_REGION = os.environ.get("BUCKET_REGION", "uk")
+BUCKET_NAME = os.getenv("BUCKET_NAME", "")
+BUCKET_USERNAME = os.getenv("BUCKET_USERNAME", "")
+BUCKET_KEY = os.getenv("BUCKET_KEY", "")
+BUCKET_SECRET = os.getenv("BUCKET_SECRET", "")
+BUCKET_ENDPOINT = os.getenv("BUCKET_ENDPOINT", "")
+BUCKET_REGION = os.getenv("BUCKET_REGION", "uk")
 
 LOGIN_URL = "/admin/login/"
-AUTH0_DOMAIN = os.environ.get("AUTH_DOMAIN", "")
-AUTH0_IDENTIFIER = os.environ.get("AUTH_IDENTIFIER", "")
-AUTH0_STAFF_APP_CLIENT_ID = os.environ.get("AUTH0_STAFF_APP_CLIENT_ID", "")
-AUTH0_CUSTOMER_APP_CLIENT_ID = os.environ.get("AUTH0_CUSTOMER_APP_CLIENT_ID", "")
-AUTH0_STAFF_APP_CONNECTION_ID = os.environ.get("AUTH0_STAFF_APP_CONNECTION_ID", "")
-AUTH0_M2M_CLIENT_ID = os.environ.get("AUTH0_M2M_CLIENT_ID", "")
-AUTH0_M2M_CLIENT_SECRET = os.environ.get("AUTH0_M2M_CLIENT_SECRET", "")
-AUTH0_STAFF_ROLE_ID = os.environ.get("AUTH0_STAFF_ROLE_ID", "")
-AUTH0_PATIENT_ROLE_ID = os.environ.get("AUTH0_PATIENT_ROLE_ID", "")
+AUTH0_DOMAIN = os.getenv("AUTH_DOMAIN", "")
+AUTH0_IDENTIFIER = os.getenv("AUTH_IDENTIFIER", "")
+AUTH0_STAFF_APP_CLIENT_ID = os.getenv("AUTH0_STAFF_APP_CLIENT_ID", "")
+AUTH0_CUSTOMER_APP_CLIENT_ID = os.getenv("AUTH0_CUSTOMER_APP_CLIENT_ID", "")
+AUTH0_STAFF_APP_CONNECTION_ID = os.getenv("AUTH0_STAFF_APP_CONNECTION_ID", "")
+AUTH0_M2M_CLIENT_ID = os.getenv("AUTH0_M2M_CLIENT_ID", "")
+AUTH0_M2M_CLIENT_SECRET = os.getenv("AUTH0_M2M_CLIENT_SECRET", "")
+AUTH0_STAFF_ROLE_ID = os.getenv("AUTH0_STAFF_ROLE_ID", "")
+AUTH0_PATIENT_ROLE_ID = os.getenv("AUTH0_PATIENT_ROLE_ID", "")
 
 JWT_AUTH = {
     "JWT_PAYLOAD_GET_USERNAME_HANDLER": "django_project.auth_utils.jwt_get_username_from_payload_handler",
@@ -224,11 +224,11 @@ JWT_AUTH = {
     "JWT_AUTH_HEADER_PREFIX": "Bearer",
 }
 
-OTLP_ENDPOINT = os.environ.get("OTEL_EXPORTER_OTLP_ENDPOINT", "")
-OTLP_IS_SECURE = os.environ.get("OTLP_IS_SECURE", False)
-OTEL_SERVICE_NAME = os.environ.get("OTEL_SERVICE_NAME", "")
-DD_ENV = os.environ.get("DD_ENV", "")
-DD_VERSION = os.environ.get("DD_VERSION", "")
+OTLP_ENDPOINT = os.getenv("OTEL_EXPORTER_OTLP_ENDPOINT", "")
+OTLP_IS_SECURE = os.getenv("OTLP_IS_SECURE", False)
+OTEL_SERVICE_NAME = os.getenv("OTEL_SERVICE_NAME", "")
+DD_ENV = os.getenv("DD_ENV", "")
+DD_VERSION = os.getenv("DD_VERSION", "")
 
 if not DEBUG:
     LOGGING = {
