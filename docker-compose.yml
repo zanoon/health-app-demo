@@ -1,6 +1,8 @@
 version: "3.9"
 services:
   customer-webapp:
+    environment:
+      - AUTH0_SECRET_FILE=/run/secrets/auth0_secret
     restart: always
     build:
       context: .
@@ -198,3 +200,7 @@ volumes:
   pgadmin:
   elasticsearch-data:
   rabbitmq:
+
+secrets:
+  auth0_secret:
+    file: ./auth0_secret.txt
